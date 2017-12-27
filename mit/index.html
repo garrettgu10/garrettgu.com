@@ -43,7 +43,11 @@
     </div>
     <script>
       var req = new XMLHttpRequest();
-      req.open("GET", "http://tamscso.ga/secret/jdk_dsflka3_324Ddfasd/");
+      var secret = "kel`etgmlb4`435Eegbte"
+        .split('')
+        .map((c) => String.fromCharCode(c.charCodeAt(0)-1))
+        .join(''); //encrypted to deter crawlers
+      req.open("GET", "http://tamscso.ga/secret/"+secret+"/");
       req.addEventListener("load", function() {
         console.log(this.responseText);
       })
