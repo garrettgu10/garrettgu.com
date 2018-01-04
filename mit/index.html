@@ -10,6 +10,7 @@
       }
       img{
         width: 600px;
+        z-index: -1000000;
       }
       div{
         margin:15px auto;
@@ -19,6 +20,20 @@
       div.small {
         font-size: 8px;
         margin: 0 auto;
+      }
+      span{
+        transition-property: color;
+        transition-duration: 250ms;
+        z-index: 1;
+      }
+      h1{
+        z-index:1;
+      }
+      .active {
+        color: red;
+        transition-property: color, left, top;
+        transition-duration: 250ms, 1.5s, 1.5s;
+        transition-timing-function: ease-in;
       }
     </style>
     <script src="jquery-3.2.1.min.js"></script>
@@ -32,30 +47,30 @@
     <button onclick="javascript:init()">Click here to waste time</button>
     <div>
       A friend posted this one for me because I'm not in the MIT Facebook group:<br>
-      <div class="small">Preconditions are all the variables are real and independent, and |s| > 1.</div>
-      <img src="img/integrals.png" alt="🎄">
+      Preconditions are all the variables are real and independent, and |s| > 1.
     </div>
+    <img src="img/integrals.png" alt="🎄">
     <div>
       Here's a very fine (ite) meme:
-      <img src="img/finite.png" alt="🎉">
     </div>
+    <img src="img/finite.png" alt="🎉">
     <div>
       I leave a little doodle on every full sheet I'm allowed to bring to an exam; here's one of them: (the face of the pickle is my CS professor)
-      <img src="img/art.jpg" alt="🥒">
     </div>
+    <img src="img/art.jpg" alt="🥒">
     <div>
       Atom text editor is an instrument:<br>
-      <video width="600" controls>
-        <source src="vid/maskoff.mp4" type="video/mp4">
-        <a href="vid/maskoff.mp4">Your browser doesn't support the video tag. Click here to view this video.</a>
-      </video>
     </div>
+    <video width="600" controls>
+      <source src="vid/maskoff.mp4" type="video/mp4">
+      <a href="vid/maskoff.mp4">Your browser doesn't support the video tag. Click here to view this video.</a>
+    </video>
     <div>
       Martin Skreli gets arrested by the FBI:<br>
-      <video width="600" controls>
-        <source src="vid/shkreli.mp4" type="video/mp4">
-        <a href="vid/shkreli.mp4">Your browser doesn't support the video tag. Click here to view this video.</a>
-      </video>
     </div>
+    <video width="600" controls>
+      <source srcs="vid/shkreli.mp4" type="video/mp4">
+      <a href="vid/shkreli.mp4">Your browser doesn't support the video tag. Click here to view this video.</a>
+    </video>
   </body>
 </html>

@@ -1,4 +1,4 @@
-var local = true;
+var local = false;
 
 function log() {
   if(local) return;
@@ -20,7 +20,9 @@ function validNode(node) {
   if(node.nodeType === 1 && node.innerHTML.trim().length){
     //is element node and nonempty
     //check if in bounds
-    return true;
+    var offset = $(node).offset();
+    if(offset.left < window.innerWidth && offset.top < window.innerHeight)
+      return true;
   }
   return false;
 }
@@ -79,23 +81,59 @@ function getAttackers(node) {
   return result;
 }
 
-function getRandomColor() {
-  var letters = '0123456789ABCDEF';
-  var color = '#';
-  for (var i = 0; i < 6; i++) {
-    color += letters[Math.floor(Math.random() * 16)];
+function lose() {
+  var endTime = new Date().getTime();
+  alert("you lasted "+ ((endTime-beginTime)/1000)+ " seconds.");
+  location.reload();
+}
+
+function activate(attacker) {
+  attacker.className += ' active';
+  setInterval(move, 1000*Math.random()+1500, $(attacker));
+  attacker.onmouseover = lose;
+}
+
+function move(attacker){
+  if(Math.random() < 0.5){
+    var offset = {
+      left: window.mousePos.left - attacker.width()/2,
+      top: window.mousePos.top - attacker.height()/2
+    }
+  }else{
+    var offset={
+      left: window.innerWidth*Math.random(),
+      top: window.innerHeight*Math.random()
+    }
   }
-  return color;
+  
+  attacker.offset(offset);
+}
+
+function shuffle(a) {
+  var j, x, i;
+  for (i = a.length - 1; i > 0; i--) {
+      j = Math.floor(Math.random() * (i + 1));
+      x = a[i];
+      a[i] = a[j];
+      a[j] = x;
+  }
 }
 
 function init() {
-  $('button').remove();
+  window.beginTime = new Date().getTime();
+  $('button').replaceWith("<div>Avoid the red text!</div>");
 
   var attackers = getAttackers(document.body);
   freeze();
+  shuffle(attackers);
   for(var i = 0; i < attackers.length; i++) {
     var attacker = attackers[i];
     
-    attacker.style.color = getRandomColor();
+    setTimeout(activate, 500*i, attacker);
   }
+  $(document,window,'html').mouseleave(lose);
 }
+
+$(document).mousemove(function(e) {
+  window.mousePos = {left: e.pageX, top: e.pageY};
+})
