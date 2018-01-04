@@ -121,7 +121,7 @@ function shuffle(a) {
 
 function init() {
   window.beginTime = new Date().getTime();
-  $('button').replaceWith("<div>Avoid the red text!</div>");
+  $('button').replaceWith("<div>Keep your mouse away from the red words!</div>");
 
   var attackers = getAttackers(document.body);
   freeze();
