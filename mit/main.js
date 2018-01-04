@@ -127,6 +127,7 @@ function updateTimer(timerNode) {
 function init() {
   window.beginTime = new Date().getTime();
   $('button').replaceWith("<div>Keep your mouse away from the red words!<br>You have lasted&nbsp;<span id=\"timer\">0&nbsp;&nbsp;&nbsp;&nbsp;</span> seconds so far.</div>");
+  $(document.body).css('border-color', 'red');
 
   setInterval(updateTimer, 100, $('#timer')[0]);
 
