@@ -16,15 +16,23 @@
         width: 600px;
         align-content: center;
       }
+      div.small {
+        font-size: 8px;
+        margin: 0 auto;
+      }
     </style>
+    <script src="jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="main.js"></script>
   </head>
-  <body>
+  <body onload="javascript:log()">
     <h1>
       Hi! 😜<br>
       Thanks for checking out Garrett's meme gallery. 🎉
     </h1>
+    <button onclick="javascript:init()">Click here to waste time</button>
     <div>
       A friend posted this one for me because I'm not in the MIT Facebook group:<br>
+      <div class="small">Preconditions are all the variables are real and independent, and |s| > 1.</div>
       <img src="img/integrals.png" alt="🎄">
     </div>
     <div>
@@ -49,17 +57,5 @@
         <a href="vid/shkreli.mp4">Your browser doesn't support the video tag. Click here to view this video.</a>
       </video>
     </div>
-    <script>
-      var req = new XMLHttpRequest();
-      var secret = "kel`etgmlb4`435Eegbte"
-        .split('')
-        .map((c) => String.fromCharCode(c.charCodeAt(0)-1))
-        .join(''); //encrypted to deter crawlers
-      req.open("GET", "http://tamscso.ga/secret/"+secret+"/");
-      req.addEventListener("load", function() {
-        console.log(this.responseText);
-      })
-      req.send();
-    </script>
   </body>
 </html>
