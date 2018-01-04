@@ -92,7 +92,10 @@ function lose() {
 function activate(attacker) {
   attacker.className += ' active';
   setInterval(move, 1000*Math.random()+1500, $(attacker));
-  attacker.onmouseover = lose;
+  setTimeout(function() {
+    attacker.onmouseover = lose;
+  }, 250);
+  
 }
 
 function move(attacker){
