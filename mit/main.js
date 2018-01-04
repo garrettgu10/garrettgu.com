@@ -82,6 +82,8 @@ function getAttackers(node) {
 }
 
 function lose() {
+  if(window.lost) return;
+  window.lost = true;
   var endTime = new Date().getTime();
   alert("you lasted "+ ((endTime-beginTime)/1000)+ " seconds.");
   location.reload();
