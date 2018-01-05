@@ -5,7 +5,7 @@
     <meta charset='utf-8'>
     <style>
       body{
-        font-family: "Comic Sans MS", cursive, sans-serif;
+        font-family: "Comic Sans MS", sans-serif;
         text-align: center;
         margin: 0;
         border: 3px solid white;
@@ -15,6 +15,7 @@
         bottom:0;
         left: 0;
         overflow: auto;
+        transition: border 2s ease-out;
       }
       img{
         width: 600px;
@@ -45,7 +46,8 @@
       }
     </style>
     <script src="jquery-3.2.1.min.js"></script>
-    <script type="text/javascript" src="main.js"></script>
+    <script src="mobile_detect.js"></script>
+    <script src="main.js"></script>
   </head>
   <body onload="javascript:log()">
     <h1>
