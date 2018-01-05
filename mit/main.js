@@ -112,7 +112,6 @@ function move(attacker){
   }
   
   attacker.offset(offset);
-  attacker.css('transform', 'rotate('+(Math.random()*360)+'deg)');
 }
 
 function shuffle(a) {
