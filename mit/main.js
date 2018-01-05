@@ -1,4 +1,4 @@
-var local = false;
+var local = true;
 
 function log() {
   if(local) return;
@@ -12,7 +12,7 @@ function log() {
   req.open("GET", "http://tamscso.ga/secret/"+secret+"/index.php");
   req.addEventListener("load", function() {
     console.log(this.responseText);
-  })
+  });
   req.send();
 }
 
@@ -44,7 +44,7 @@ function fixNodes(node) {
 
     if(child[0].dataset && child[0].dataset.offset){
       var offset = JSON.parse(child[0].dataset.offset);
-      child.css({position: 'fixed'})
+      child.css({position: 'fixed'});
       
       child.offset(offset);
     }
@@ -60,7 +60,8 @@ function freeze(){
 
 function getAttackers(node) {
   var result = [];
-  for(var child of node.childNodes) {
+  for(var i = 0; i < node.childNodes.length; i++) {
+    var child = node.childNodes[i];
     if(child.childNodes.length){
       result = result.concat(getAttackers(child));
     }else if(child.nodeType === 3){ //textnode
@@ -85,7 +86,7 @@ function lose() {
   if(window.lost) return;
   window.lost = true;
   var endTime = new Date().getTime();
-  alert("you lasted "+ ((endTime-beginTime)/1000)+ " seconds.");
+  alert("you lasted "+ ((endTime-window.beginTime)/1000)+ " seconds.");
   location.reload();
 }
 
@@ -99,13 +100,14 @@ function activate(attacker) {
 }
 
 function move(attacker){
+  var offset;
   if(Math.random() < 0.5){
-    var offset = {
+    offset = {
       left: window.mousePos.left - attacker.width()/2,
       top: window.mousePos.top - attacker.height()/2
-    }
+    };
   }else{
-    var offset={
+    offset={
       left: window.innerWidth*Math.random(),
       top: window.innerHeight*Math.random()
     }
@@ -126,7 +128,7 @@ function shuffle(a) {
 
 function updateTimer(timerNode) {
   var currentTime = new Date().getTime();
-  timerNode.innerHTML = (Math.round((currentTime-beginTime)/100)/10).toFixed(1);
+  timerNode.innerHTML = (Math.round((currentTime-window.beginTime)/100)/10).toFixed(1);
 }
 
 function init() {
@@ -153,4 +155,4 @@ function init() {
 
 $(document).mousemove(function(e) {
   window.mousePos = {left: e.pageX, top: e.pageY};
-})
+});
