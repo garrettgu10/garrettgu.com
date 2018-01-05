@@ -131,7 +131,7 @@ function updateTimer(timerNode) {
 
 function init() {
   if(typeof isMobile === "function" && isMobile()) {
-    alert("Just so you know, this game is 100% not compatible with touch devices.");
+    alert("Just so you know, this game 100% does NOT work with touch devices.");
   }
   window.beginTime = new Date().getTime();
   $('button').replaceWith("<div>Keep your mouse away from the red words!<br>You have lasted&nbsp;<span id=\"timer\">0&nbsp;&nbsp;&nbsp;&nbsp;</span> seconds so far.</div>");
@@ -146,7 +146,7 @@ function init() {
   for(var i = 0; i < attackers.length; i++) {
     var attacker = attackers[i];
     
-    setTimeout(activate, 1000+25*i*i, attacker);
+    setTimeout(activate, 2000+25*i*i, attacker);
   }
   $(document,window,'html').mouseleave(lose);
 }
