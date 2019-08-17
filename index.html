@@ -1,29 +1,134 @@
 <!DOCTYPE HTML>
 <html lang="en">
 <head>
-    <title>Garrett Gu</title>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-86213503-2"></script>
-    <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-86213503-2');
-    </script>
+  <title>Garrett Gu</title> 
+  <link href="./css/font.css" rel="stylesheet"> 
+  <style>
+    body {
+      margin: 0;
+    }
+    .main-callout {
+      display: flex;
+      flex-direction: column;
+      height: 1000px;
+      width: 100%;
+      background-color: #62BFED;
+      justify-content: center;
+      align-items: center;
+    }
+    .my-name {
+      font-size: 96px;
+      color: white;
+    }
+    .name-letter {
+      display: inline-block;
+      opacity: 0;
+    }
+    .subtitle {
+      color: white;
+      font-size: 28px;
+      opacity: 0;
+    }
+    .triangle {
+      position: absolute;
+      left: 50%;
+      right: 50%;
+      transform-origin: center center;
+      opacity: 0;
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 0 20px 34.6px 20px;
+      border-color: transparent transparent #68D8D6 transparent;
+    }
+    .circle {
+      position: absolute;
+      height: 40px;
+      width: 40px;
+      opacity: 0;
+      background-color: #2AB7CA;
+      border-radius: 50%;
+    }
+    .square {
+      position: absolute;
+      height: 40px;
+      width: 40px;
+      opacity: 0;
+      background-color: #ADBDFF;
+    }
+    .body-container {
+      background-color: #FDE74C;
+      height: 500px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 2;
+    }
+    .body-text {
+      
+    }
+  </style>
+  <script src="js/anime.min.js"></script>
 </head>
 <body>
-    <script>
-        function showEmail() {
-            document.getElementById('email-placeholder').innerHTML = ": "+atob("Z2FycmV0dGd1Nzc3IGF0IGdtYWlsIGRvdCBjb20=");
-        }
-    </script>
-    <h1>Hi.</h1>
-    This is Garrett's home on the web. <br>
-    See my code on <a href="https://github.com/garrettgu10">GitHub.</a><br>
-    Send me an <a href="#" onclick="javascript:showEmail()" id="email-link">email</a><span id="email-placeholder"></span>.<br>
-    Check out a <a href="https://garrettgu10.github.io">prettier website.</a><br>
-    Whatever you do, don't look at the source.
-    <!-- L3NlY3JldC8xLVB5UlRRb3BaamU= -->
+  <div class="main-callout">
+    <div class="my-name">
+      <span class="name-letter">G</span><span class="name-letter">a</span><span class="name-letter">r</span><span class="name-letter">r</span><span class="name-letter">e</span><span class="name-letter">t</span><span class="name-letter">t</span> <span class="name-letter">G</span><span class="name-letter">u</span>
+    </div>
+    <div class="subtitle">
+      Developer • Student • 2021
+    </div>
+  </div>
+  <div class="body-container">
+    <div class="body-text">
+      This website is a work-in-progress. Here is some placeholder text for now. 
+    </div>
+  </div>
+  <script>
+    const shapes = [];
+    const mainCallout = document.querySelector(".main-callout");
+    for(let i = 0; i < 50; i++){
+      shapes[i] = document.createElement("div");
+      if (Math.random() > 0.33) {
+        shapes[i].classList = "triangle";
+      }else if (Math.random() > 0.5){
+        shapes[i].classList = "circle";
+      }else{
+        shapes[i].classList = "square";
+      }
+      mainCallout.appendChild(shapes[i]);
+    }
+    
+    for(let i = 0; i < shapes.length; i++) {
+      const shape = shapes[i];
+      const theta = i / shapes.length * Math.PI * 2;
+      const rotation = Math.random() * 360;
+      const r = Math.random() * 290 + 200;
+      anime({
+        targets: shape,
+        translateX: r * Math.cos(theta) * 1.5,
+        translateY: r * Math.sin(theta),
+        rotateZ: rotation,
+        opacity: 1,
+        delay: Math.random() * 500,
+      })
+      console.log(r);
+    }
+    
+    anime({
+      targets: ".name-letter",
+      opacity: 1,
+      scale: [0,1],
+      translateY: [100, 0],
+      delay: anime.stagger(50)
+    })
+    
+    anime({
+      targets: ".subtitle",
+      opacity: 1,
+      translateY: [100, 0],
+      delay: 500,
+    })
+  </script>
 </body>
 </html>
