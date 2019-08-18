@@ -1,6 +1,7 @@
 body {
   margin: 0;
   font-size: 25px;
+  background-color: #62BFED;
 }
 .main-callout {
   display: flex;
@@ -77,8 +78,8 @@ body {
 }
 .project-title {
   font-weight: 300;
-  margin-top: 40px;
-  font-size: 35px;
+  margin-top: 20px;
+  font-size: 40px;
 }
 .about-me {
   text-align: center;
@@ -122,8 +123,7 @@ body {
   max-width: 90%;
 }
 .link-container {
-  padding-top: 23px;
-  padding-bottom: 40px;
+  padding-bottom: 20px;
   font-size: 23px;
 }
 a {

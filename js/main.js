@@ -11,9 +11,99 @@ function performRotation(shape) {
   })
 }
 
+function debounce(func, delay) {
+	var timeout;
+	return function() {
+		clearTimeout(timeout);
+		timeout = setTimeout(func.apply(null, arguments), delay);
+	};
+};
+
 function showEmail() {
   const email = atob("Z3UgW2F0XSB1dGV4YXMuZWR1");
   document.getElementById("email-container").innerHTML = email;
+}
+
+function animateIn(element, isInitial) {
+  const duration = isInitial? 0: 1000;
+  const xDirection = element.classList.contains("transition-from-right") ? 1: -1;
+  
+  if(element.classList.contains("header")){
+    anime({
+      targets: element,
+      opacity: 1,
+      translateY: [100, 0],
+      scale: [0, 1],
+      duration: duration
+    })
+  }else if (element.classList.contains("project-title")){
+    anime({
+      targets: element,
+      opacity: 1,
+      translateX: [xDirection * 150, 0],
+      duration: duration
+    })
+  }else if (element.classList.contains("link-container")) {
+    anime({
+      targets: element,
+      opacity: 1,
+      translateY: [100, 0],
+      duration: duration
+    })
+  }else if(element.classList.contains("image-container")){
+    anime({
+      targets: element,
+      opacity: 1,
+      translateX: [xDirection * 50, 0],
+      duration: duration
+    })
+  }else if(element.tagName === "P") {
+    anime({
+      targets: element,
+      opacity: 1,
+      translateX: [xDirection * 50, 0],
+      duration: duration
+    })
+  }else {
+    anime({
+      targets: element,
+      opacity: 1,
+      duration: duration
+    })
+  }
+}
+
+const THRESHOLD = 100;
+function handleScroll(element, isInitial) {
+  if(element.dataset.displayed) {
+    return;
+  }
+  const scrollBottom = window.scrollY + window.innerHeight;
+  const elementTop = element.offsetTop;
+  if(scrollBottom - elementTop > THRESHOLD) {
+    element.dataset.displayed = "true";
+    animateIn(element, isInitial);
+  }
+}
+
+const debouncedHandleScroll = debounce(handleScroll, 250);
+
+function initializeScrollableElements() {
+  const headers = document.querySelectorAll(".header, .project-title, .link-container, .image-container, p");
+  console.log(headers);
+  for(let header of headers) {
+    header.style.opacity = 0;
+    handleScroll(header, true);
+  }
+  let isInitial = true;
+  window.onscroll = function() {
+    for(let header of headers) {
+      debouncedHandleScroll(header, isInitial);
+    }
+  }
+  setTimeout(function() {
+    isInitial = false;
+  }, 500);
 }
 
 (function() {
@@ -44,6 +134,8 @@ function showEmail() {
       performRotation(shape);
     })
   }
+  
+  initializeScrollableElements();
 
   anime({
     targets: ".name-letter",
