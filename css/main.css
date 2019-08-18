@@ -194,6 +194,9 @@ a:hover {
 }
 @media only screen and (min-width: 1500px) {
   .body-item {
-    width: 1350px
+    width: 1350px;
+  }
+  .about-me {
+    width: 1350px;
   }
 }
