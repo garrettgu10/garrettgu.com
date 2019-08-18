@@ -2,74 +2,8 @@
 <html lang="en">
 <head>
   <title>Garrett Gu</title> 
-  <link href="./css/font.css" rel="stylesheet"> 
-  <style>
-    body {
-      margin: 0;
-    }
-    .main-callout {
-      display: flex;
-      flex-direction: column;
-      height: 1000px;
-      width: 100%;
-      background-color: #62BFED;
-      justify-content: center;
-      align-items: center;
-      position: relative;
-      overflow: hidden;
-    }
-    .my-name {
-      font-size: 96px;
-      color: white;
-    }
-    .name-letter {
-      display: inline-block;
-      opacity: 0;
-    }
-    .subtitle {
-      color: white;
-      font-size: 28px;
-      opacity: 0;
-    }
-    .triangle {
-      position: absolute;
-      left: 50%;
-      right: 50%;
-      transform-origin: center center;
-      opacity: 0;
-      width: 0;
-      height: 0;
-      border-style: solid;
-      border-width: 0 20px 34.6px 20px;
-      border-color: transparent transparent #68D8D6 transparent;
-    }
-    .circle {
-      position: absolute;
-      height: 40px;
-      width: 40px;
-      opacity: 0;
-      background-color: #2AB7CA;
-      border-radius: 50%;
-    }
-    .square {
-      position: absolute;
-      height: 40px;
-      width: 40px;
-      opacity: 0;
-      background-color: #ADBDFF;
-    }
-    .body-container {
-      background-color: #FDE74C;
-      height: 500px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 2;
-    }
-    .body-text {
-      
-    }
-  </style>
+  <link href="css/font.css" rel="stylesheet"> 
+  <link href="css/main.css" rel="stylesheet">
   <script src="js/anime.min.js"></script>
 </head>
 <body>
@@ -81,55 +15,67 @@
       Developer • Student • 2021
     </div>
   </div>
-  <div class="body-container">
-    <div class="body-text">
-      This website is a work-in-progress. Here is some placeholder text for now. 
+  <div class="body-container aqua">
+    <h1 class="header">
+      Hi.
+    </h1>
+    <div class="about-me">
+      <p>My name is Garrett Gu, and I am a student at the University of Texas at Austin, majoring in Computer Science and Mathematics, and a member of the Turing Scholars Honors Program. Welcome to my home on the web! </p>
+      <p>This website was designed and built entirely by me, with no libraries, frameworks, or templates except <a href="https://animejs.com">Anime.js</a>.</p>
+      <p>I have experience programming in JavaScript, Java, C, Go, Python, SQL and more, and am looking for an internship opportunity for <b>summer 2020</b>. My resume is available <a href="resume.pdf">here</a>.</p>
     </div>
   </div>
-  <script>
-    const shapes = [];
-    const mainCallout = document.querySelector(".main-callout");
-    for(let i = 0; i < 50; i++){
-      shapes[i] = document.createElement("div");
-      if (Math.random() > 0.33) {
-        shapes[i].classList = "triangle";
-      }else if (Math.random() > 0.5){
-        shapes[i].classList = "circle";
-      }else{
-        shapes[i].classList = "square";
-      }
-      mainCallout.appendChild(shapes[i]);
-    }
-    
-    for(let i = 0; i < shapes.length; i++) {
-      const shape = shapes[i];
-      const theta = i / shapes.length * Math.PI * 2;
-      const rotation = Math.random() * 360;
-      const r = Math.random() * 290 + 200;
-      anime({
-        targets: shape,
-        translateX: r * Math.cos(theta) * 1.5,
-        translateY: r * Math.sin(theta),
-        rotateZ: rotation,
-        opacity: 1,
-        delay: Math.random() * 500,
-      })
-    }
-    
-    anime({
-      targets: ".name-letter",
-      opacity: 1,
-      scale: [0,1],
-      translateY: [100, 0],
-      delay: anime.stagger(50)
-    })
-    
-    anime({
-      targets: ".subtitle",
-      opacity: 1,
-      translateY: [100, 0],
-      delay: 500,
-    })
-  </script>
+  <div class="body-container purple">
+    <h1 class="header">
+      Projects
+    </h1>
+    <div class="body-item">
+      <div class="image-container">
+        <img height=500 src="img/oopboy.png" alt="Screenshot of the &quot;OOPBoy&quot; Game Boy emulator playing The Legend of Zelda: Link's Awakening" />
+        <iframe class="embedded-video" src="https://player.vimeo.com/video/354435641" width="500" height="500" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe> 
+      </div>
+      <div>
+        <h2 class="project-title">
+        OOPBoy
+        </h2>
+        <div class="project-description">
+          <p>OOPBoy is a highly-accurate emulator of the Nintendo Game Boy&trade;, written entirely in Java by me and a friend.</p>
+          <p>It has been confirmed to work with dozens of games, including classics such as Tetris, Super Mario Land, Pokemon Red &amp; Blue, and The Legend of Zelda: Link's Awakening. </p>
+          <p>OOPBoy has all the basic features you'd expect from an emulator, such as display filters, save-states, and sound. However, it also includes unique features such as rewind, "turbo" mode, and an easy-to-use ROM debugger with breakpoints, core dumps, memory manipulation, and instruction history. </p>
+          <p>The entirety of this project's source code and executable binaries are available for download <a href="https://github.com/429ers/OOPBoy">here</a>.</p>
+        </div>
+      </div>
+    </div>
+    <div class="body-item right-image">
+      <div class="image-container">
+        <img height=500 src="img/tetrisbrain.png" alt="Screenshot of my TetrisBrain algorithm playing Tetris" />
+        <iframe class="embedded-video-tetris" src="https://player.vimeo.com/video/354437856" width="640" height="480" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+      </div>
+      <div>
+        <h2 class="project-title">
+        TetrisBrain
+        </h2>
+        <div class="project-description">
+          <p>TetrisBrain is a genetic algorithm trained for long-term survival, built on top of the Tetris assignment in Dr. Calvin Lin's Honors Data Structures course. The Tetris engine, as well as the genetic algorithm and trainer, were written in Java.</p>
+          <p>It can survive for up to 200,000 tetrominoes, with great average-case performance as well, after around four hours of training.</p>
+        </div>
+      </div>
+    </div>
+    <div class="footnote">... and many more! Dozens of my personal projects are open-sourced on <a href="https://github.com/garrettgu10">GitHub</a>.</div>
+  </div>
+  <div class="body-container aqua">
+    <h1 class="header">
+      Links
+    </h1>
+    <div class="link-container">
+      <a class="link" href="resume.pdf">Resume</a> • <a class="link" href="https://github.com/garrettgu10">GitHub</a> • <a class="link" href="https://www.linkedin.com/in/garrett-gu-15485094/">LinkedIn</a> • <span id="email-container"><a class="link" href="javascript:void(0)" onclick="javascript:showEmail()">Email</a></span>
+    </div>
+  </div>
+  <div class="body-container blue">
+    <div class="copyright-container">
+    &copy; <script>document.write(new Date().getFullYear())</script> Garrett Gu
+    </div>
+  </div>
+  <script src="js/main.js"></script>
 </body>
 </html>
