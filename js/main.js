@@ -101,6 +101,11 @@ function initializeScrollableElements() {
       debouncedHandleScroll(header, isInitial);
     }
   }, {passive: true});
+  window.addEventListener("resize", function() {
+    for(let header of headers) {
+      debouncedHandleScroll(header, isInitial);
+    }
+  }, {passive: true});
   setTimeout(function() {
     isInitial = false;
   }, 500);
