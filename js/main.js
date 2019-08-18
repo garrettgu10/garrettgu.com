@@ -106,10 +106,15 @@ function initializeScrollableElements() {
   }, 500);
 }
 
+function isMobile() {
+  return window.innerWidth < 700;
+}
+
 (function() {
   const SHAPE_CLASSES = ["triangle", "circle", "square"];
   const shapes = [];
   const mainCallout = document.querySelector(".main-callout");
+  let renderedMobile = isMobile();
   for(let i = 0; i < 50; i++){
     shapes[i] = document.createElement("div");
     shapes[i].classList = SHAPE_CLASSES[Math.floor(Math.random() * 3)]
@@ -121,10 +126,15 @@ function initializeScrollableElements() {
     const theta = i / shapes.length * Math.PI * 2;
     const rotation = Math.random() * 360;
     const r = Math.random() * 290 + 200;
+    const multiplier = isMobile()? 0.66: 1;
+    const x = r * Math.cos(theta) * 1.5 * multiplier;
+    const y = r * Math.sin(theta) * multiplier;
+    shape.dataset.x = x;
+    shape.dataset.y = y;
     anime({
       targets: shape,
-      translateX: r * Math.cos(theta) * 1.5,
-      translateY: r * Math.sin(theta),
+      translateX: x,
+      translateY: y,
       rotateY: anime.random(-60, 60),
       rotateX: anime.random(-60, 60),
       rotateZ: rotation,
@@ -137,6 +147,26 @@ function initializeScrollableElements() {
   }
   
   initializeScrollableElements();
+  
+  window.addEventListener("resize", function() {
+    if(isMobile() !== renderedMobile) {
+      renderedMobile = isMobile();
+      const multiplier = isMobile()? 0.66: 1/0.66;
+      anime({
+        targets: shapes,
+        translateX: function(shape) {
+          const x = parseFloat(shape.dataset.x) * multiplier
+          shape.dataset.x = x;
+          return x;
+        },
+        translateY: function(shape) {
+          const y = parseFloat(shape.dataset.y) * multiplier
+          shape.dataset.y = y;
+          return y;
+        },
+      })
+    }
+  })
 
   anime({
     targets: ".name-letter",
