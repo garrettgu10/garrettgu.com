@@ -125,8 +125,17 @@ body {
   max-width: 90%;
 }
 .link-container {
-  padding-bottom: 20px;
+  padding-top: 30px;
+  padding-bottom: 40px;
   font-size: 23px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.bullet {
+  padding-left: 10px;
+  padding-right: 10px;
 }
 a {
   color: #30648a;
@@ -139,6 +148,38 @@ a:hover {
 .copyright-container {
   padding-top: 20px;
   padding-bottom: 20px;
+}
+@media only screen and (max-width: 450px) {
+  .link-container {
+    flex-direction: column;
+    padding-bottom: 40px;
+  }
+  .bullet {
+    display: none;
+  }
+  .link-container > a {
+    margin-bottom: 10px;
+  }
+}
+@media only screen and (max-width: 700px) {
+  .my-name {
+    font-size: 56px;
+  }
+  .subtitle {
+    font-size: 20px;
+  }
+  body {
+    font-size: 20px;
+  }
+  .image-container {
+    height: 300px;
+  }
+  img {
+    height: 300px;
+  }
+  .main-callout {
+    height: 750px;
+  }
 }
 @media only screen and (max-width: 1000px) {
   .body-item {

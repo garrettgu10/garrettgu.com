@@ -4,6 +4,7 @@
   <title>Garrett Gu</title> 
   <link href="css/font.css" rel="stylesheet"> 
   <link href="css/main.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <script src="js/anime.min.js"></script>
 </head>
 <body>
@@ -21,7 +22,7 @@
     </h1>
     <div class="about-me">
       <p>My name is Garrett Gu, and I am a student at the University of Texas at Austin, majoring in Computer Science and Mathematics, and a member of the Turing Scholars Honors Program. Welcome to my home on the web! </p>
-      <p>This website was designed and built entirely by me, with no libraries, frameworks, or templates except <a href="https://animejs.com">Anime.js</a>. Feel free to check out the source code! It is completely unminified. </p>
+      <p>This website was designed and built entirely by me, with no libraries, frameworks, or templates except <a href="https://animejs.com">Anime.js</a>. Feel free to take a look at the source code! It is completely unminified. </p>
       <p>I have experience programming in JavaScript, Java, C, Go, Python, SQL and more, and am looking for an internship opportunity for <b>summer 2020</b>. My resume is available <a href="resume.pdf">here</a>.</p>
     </div>
   </div>
@@ -32,7 +33,7 @@
     <div class="body-item">
       <div class="image-container">
         <img height=500 src="img/oopboy.png" alt="Screenshot of the &quot;OOPBoy&quot; Game Boy emulator playing The Legend of Zelda: Link's Awakening" />
-        <iframe class="embedded-video" src="https://player.vimeo.com/video/354435641" width="500" height="500" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe> 
+        <iframe class="embedded-video" src="https://player.vimeo.com/video/354435641?&title=0&loop=0&byline=0&portrait=0" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe> 
       </div>
       <div>
         <h2 class="project-title">
@@ -49,7 +50,7 @@
     <div class="body-item right-image">
       <div class="image-container transition-from-right">
         <img height=500 src="img/tetrisbrain.png" alt="Screenshot of my TetrisBrain algorithm playing Tetris" />
-        <iframe class="embedded-video-tetris" src="https://player.vimeo.com/video/354437856" width="640" height="480" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+        <iframe class="embedded-video-tetris" src="https://player.vimeo.com/video/354437856?&title=0&loop=0&byline=0&portrait=0" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe> 
       </div>
       <div>
         <h2 class="project-title">
@@ -67,9 +68,17 @@
     <h1 class="header">
       Links
     </h1>
-    <p class="link-container">
-      <a class="link" href="resume.pdf">Resume</a> &#8226; <a class="link" href="https://github.com/garrettgu10">GitHub</a> &#8226; <a class="link" href="https://www.linkedin.com/in/garrett-gu-15485094/">LinkedIn</a> &#8226; <span id="email-container"><a class="link" href="javascript:void(0)" onclick="javascript:showEmail()">Email</a></span>
-    </p>
+    <div class="link-container">
+      <a class="link" href="resume.pdf">Resume</a>
+      <div class="bullet"> &#8226; </div>
+      <a class="link" href="https://github.com/garrettgu10">GitHub</a>
+      <div class="bullet"> &#8226; </div>
+      <a class="link" href="https://www.linkedin.com/in/garrett-gu-15485094/">LinkedIn</a>
+      <div class="bullet"> &#8226; </div>
+      <span id="email-container">
+        <a class="link" href="javascript:void(0)" onclick="javascript:showEmail()">Email</a>
+      </span>
+    </div>
   </div>
   <div class="body-container blue">
     <div class="copyright-container">
