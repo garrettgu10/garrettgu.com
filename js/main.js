@@ -129,6 +129,7 @@ function initializeScrollableElements() {
       rotateX: anime.random(-60, 60),
       rotateZ: rotation,
       opacity: 1,
+      delay: 200,
       duration: anime.random(750, 3000)
     }).finished.then(function() {
       performRotation(shape);
