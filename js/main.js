@@ -27,7 +27,7 @@ function showEmail() {
 
 function animateIn(element, isInitial) {
   const duration = isInitial? 0: 1000;
-  const xDirection = element.classList.contains("transition-from-right") ? 1: -1;
+  const xDirection = window.innerWidth > 1000 && element.classList.contains("transition-from-right") ? 1: -1;
   
   if(element.classList.contains("header")){
     anime({
