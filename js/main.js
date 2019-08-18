@@ -5,7 +5,8 @@ function performRotation(shape) {
     rotateY: anime.random(-60, 60),
     rotateX: anime.random(-60, 60),
     rotateZ: anime.random(0, 360),
-    duration: anime.random(2500, 7500),
+    delay: anime.random(2500, 5000), 
+    duration: anime.random(2500, 5000),
   }).finished.then(function() {
     performRotation(shape);
   })
@@ -90,17 +91,16 @@ const debouncedHandleScroll = debounce(handleScroll, 250);
 
 function initializeScrollableElements() {
   const headers = document.querySelectorAll(".header, .project-title, .link-container, .image-container, p");
-  console.log(headers);
   for(let header of headers) {
     header.style.opacity = 0;
     handleScroll(header, true);
   }
   let isInitial = true;
-  window.onscroll = function() {
+  document.addEventListener("scroll", function() {
     for(let header of headers) {
       debouncedHandleScroll(header, isInitial);
     }
-  }
+  }, {passive: true});
   setTimeout(function() {
     isInitial = false;
   }, 500);
@@ -110,7 +110,7 @@ function initializeScrollableElements() {
   const SHAPE_CLASSES = ["triangle", "circle", "square"];
   const shapes = [];
   const mainCallout = document.querySelector(".main-callout");
-  for(let i = 0; i < 60; i++){
+  for(let i = 0; i < 50; i++){
     shapes[i] = document.createElement("div");
     shapes[i].classList = SHAPE_CLASSES[Math.floor(Math.random() * 3)]
     mainCallout.appendChild(shapes[i]);
