@@ -1,22 +1,8 @@
-function performRotation(shape) {
-  anime({
-    easing: "easeOutQuad",
-    targets: shape,
-    rotateY: anime.random(-60, 60),
-    rotateX: anime.random(-60, 60),
-    rotateZ: anime.random(0, 360),
-    delay: anime.random(2500, 5000), 
-    duration: anime.random(2500, 5000),
-  }).finished.then(function() {
-    performRotation(shape);
-  })
-}
-
 function debounce(func, delay) {
 	var timeout;
 	return function() {
 		clearTimeout(timeout);
-		timeout = setTimeout(func.apply(null, arguments), delay);
+		timeout = setTimeout(() => { func.apply(null, arguments) }, delay);
 	};
 };
 
@@ -115,6 +101,36 @@ function isMobile() {
   return window.innerWidth < 700;
 }
 
+function handleParallax(xMult, yMult, shapeElems) {
+  const allShapes = [...shapeElems, document.querySelector(".my-name"), document.querySelector(".subtitle")];
+  for(let shape of allShapes){
+    const x = Number(shape.dataset.x) || 0;
+    const y = Number(shape.dataset.y) || 0;
+    const multiplier = Number(shape.dataset.parallaxMultiplier) || 40;
+    
+    const newX = x + multiplier * xMult;
+    const newY = y + multiplier * yMult;
+    
+    anime({
+      targets: shape,
+      translateX: newX,
+      translateY: newY,
+      easing: 'easeOutExpo'
+    })
+  }
+}
+
+const debouncedHandleParallax = debounce(handleParallax, 20);
+
+function createParallax(shapeElems) {
+  const mainCallout = document.getElementsByClassName("main-callout")[0];
+  mainCallout.addEventListener("mousemove", function(event) {
+    const width = mainCallout.offsetWidth;
+    const height = mainCallout.offsetHeight;
+    debouncedHandleParallax((event.clientX - width / 2) / width, (event.clientY - height / 2) / width, shapeElems);
+  });
+}
+
 (function() {
   const SHAPE_CLASSES = ["triangle", "circle", "square"];
   const shapes = [];
@@ -123,8 +139,11 @@ function isMobile() {
   for(let i = 0; i < 50; i++){
     shapes[i] = document.createElement("div");
     shapes[i].classList = SHAPE_CLASSES[Math.floor(Math.random() * 3)]
+    shapes[i].dataset.parallaxMultiplier = Math.random() * 200 - 50;
     mainCallout.appendChild(shapes[i]);
   }
+
+  let finishedShapes = 0;
 
   for(let i = 0; i < shapes.length; i++) {
     const shape = shapes[i];
@@ -145,10 +164,13 @@ function isMobile() {
       rotateZ: rotation,
       opacity: 1,
       delay: 200,
-      duration: anime.random(750, 3000)
-    })/*.finished.then(function() {
-      performRotation(shape);
-    })*/
+      duration: anime.random(750, 1500)
+    }).finished.then(function() {
+      finishedShapes++;
+      if(finishedShapes === shapes.length) {
+        createParallax(shapes);
+      }
+    })
   }
   
   initializeScrollableElements();
