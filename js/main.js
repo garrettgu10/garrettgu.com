@@ -84,12 +84,12 @@ function initializeScrollableElements() {
   let isInitial = true;
   document.addEventListener("scroll", function() {
     for(let header of headers) {
-      debouncedHandleScroll(header, isInitial);
+      handleScroll(header, isInitial);
     }
   }, {passive: true});
   window.addEventListener("resize", function() {
     for(let header of headers) {
-      debouncedHandleScroll(header, isInitial);
+      handleScroll(header, isInitial);
     }
   }, {passive: true});
   setTimeout(function() {
