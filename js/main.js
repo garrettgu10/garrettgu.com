@@ -1,10 +1,16 @@
-function debounce(func, delay) {
-	var timeout;
-	return function() {
-		clearTimeout(timeout);
-		timeout = setTimeout(() => { func.apply(null, arguments) }, delay);
-	};
-};
+function rateLimit(func, quantum) {
+  var args = null;
+  setInterval(function() {
+    if(args) {
+        func.apply(null, args);
+        args = null;
+    }
+  }, quantum);
+
+  return function() {
+    args = arguments;
+  }
+}
 
 function showEmail() {
   const email = atob("Z3UgW2F0XSB1dGV4YXMuZWR1");
@@ -73,8 +79,6 @@ function handleScroll(element, isInitial) {
   }
 }
 
-const debouncedHandleScroll = debounce(handleScroll, 250);
-
 function initializeScrollableElements() {
   const headers = document.querySelectorAll(".header, .project-title, .link-container, .image-container, p");
   for(let header of headers) {
@@ -120,14 +124,14 @@ function handleParallax(xMult, yMult, shapeElems) {
   }
 }
 
-const debouncedHandleParallax = debounce(handleParallax, 20);
+const rateLimitedHandleParallax = rateLimit(handleParallax, 33);
 
 function createParallax(shapeElems) {
   const mainCallout = document.getElementsByClassName("main-callout")[0];
   mainCallout.addEventListener("mousemove", function(event) {
     const width = mainCallout.offsetWidth;
     const height = mainCallout.offsetHeight;
-    debouncedHandleParallax((event.clientX - width / 2) / width, (event.clientY - height / 2) / width, shapeElems);
+    rateLimitedHandleParallax((event.clientX - width / 2) / width, (event.clientY - height / 2) / width, shapeElems);
   });
 }
 
