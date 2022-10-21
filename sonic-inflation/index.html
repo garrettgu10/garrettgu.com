@@ -41,13 +41,20 @@
             const spotifyLink = document.getElementById("spotify-link");
             const spotifyIFrame = document.getElementById("spotify-iframe");
             const spotifyContainer = document.getElementById("spotify-iframe-container");
+            const mainBackground = document.getElementsByClassName("main-container-background")[0];
 
             spotifyLink.style.display = "flex";
-            spotifyContainer.style.display = "none";
+            spotifyContainer.style.position = "absolute";
+            spotifyContainer.style.opacity = 0;
+            spotifyContainer.style.zIndex = -100;
+            mainBackground.classList.add("main-container-background-short");
 
             spotifyIFrame.addEventListener("load", function() {
                 spotifyLink.remove();
-                spotifyContainer.style.display = "initial";
+                spotifyContainer.style.position = "relative";
+                spotifyContainer.style.opacity = 1;
+                spotifyContainer.style.zIndex = 0;
+                mainBackground.classList.remove("main-container-background-short");
             });
         </script>
     </body>
