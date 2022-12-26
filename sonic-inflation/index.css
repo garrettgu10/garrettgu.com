@@ -24,7 +24,7 @@ body {
     position: absolute;
     margin-top: 80px;
     width: 80%;
-    height: 740px;
+    height: 692px;
     z-index: -100;
 
     box-shadow: 0 4px 8px 0 black, 0 6px 20px 0 black;
@@ -67,7 +67,7 @@ body {
     display: flex;
     margin-top: 20px;
     width: 600px;
-    background-color: #d42225;
+    background-color: rgb(218, 49, 38);
     border-radius: 15px;
     align-items: center;
     text-decoration: none;
