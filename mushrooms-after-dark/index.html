@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>sonic inflation - Garrett Gu</title>
+        <link rel="stylesheet" href="index.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="preconnect" href="https://fonts.googleapis.com"> 
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
+        <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@200;400&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <div class="main-container">
+            <img class="cover-img" src="assets/cover.png">
+            <div class="title">mushrooms after dark</div>
+            <div class="artist">Garrett Gu</div>
+            <a class="other-link" href="https://music.apple.com/us/album/mushrooms-after-dark/1713242508">
+                <img src="assets/apple_music.png">
+                <div class="link-title">Apple Music</div>
+                <div class="link-rightarrow">></div>
+            </a>
+            <a class="other-link" href="https://www.youtube.com/playlist?list=OLAK5uy_k8jAQ27gJpRNhyBQ34v_4eTsIlruk0fgA">
+                <img src="assets/youtube.jpeg">
+                <div class="link-title">YouTube</div>
+                <div class="link-rightarrow">></div>
+            </a>
+            <a id="spotify-link" class="other-link" href="https://open.spotify.com/album/1XDGL7lr1QSFREYUurDFJJ?si=8w1ZeZF-TPmBKytYBbuiyg">
+                <img src="assets/spotify.png">
+                <div class="link-title">Spotify</div>
+                <div class="link-rightarrow">></div>
+            </a>
+            <div id="spotify-iframe-container" class="spotify-container">
+                <iframe id="spotify-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/album/1XDGL7lr1QSFREYUurDFJJ?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+            </div>
+            <div class="copyright-container">
+                &#169; <script>document.write(new Date().getFullYear())</script> Garrett Gu
+            </div>
+            <div class="main-container-background"></div>
+        </div>
+
+        <script>
+            const spotifyLink = document.getElementById("spotify-link");
+            const spotifyIFrame = document.getElementById("spotify-iframe");
+            const spotifyContainer = document.getElementById("spotify-iframe-container");
+            const mainBackground = document.getElementsByClassName("main-container-background")[0];
+
+            spotifyLink.style.display = "flex";
+            spotifyContainer.style.position = "absolute";
+            spotifyContainer.style.opacity = 0;
+            spotifyContainer.style.zIndex = -100;
+            mainBackground.classList.add("main-container-background-short");
+
+            spotifyIFrame.addEventListener("load", function() {
+                spotifyLink.remove();
+                spotifyContainer.style.position = "relative";
+                spotifyContainer.style.opacity = 1;
+                spotifyContainer.style.zIndex = 0;
+                mainBackground.classList.remove("main-container-background-short");
+            });
+        </script>
+    </body>
+</html>
